@@ -2,20 +2,20 @@ using UnityEngine;
 
 public class MazeManager : MonoBehaviour
 {
-    // --- 原有的迷宮模型（保留，不破壞） ---
+
     [Header("基礎迷宮設置")]
     public GameObject maze1; // 第一關迷宮
     public GameObject maze2; // 第二關迷宮
     public GameObject maze3; // 第三關迷宮
 
-    // --- 新增：可以在 Inspector 自由添加的列表 ---
+    // --- 新增：在 Inspector 自由添加的列表 ---
     [Header("額外要【開啟】的物體列表")]
     public GameObject[] extraObjectsToEnable;
 
     [Header("額外要【關閉】的物體列表")]
     public GameObject[] extraObjectsToDisable;
 
-    // --- 原有的感應器類型判斷 ---
+    
     [Header("設定感應器類型 (1, 2 或 3)")]
     public int triggerType = 1; 
 
@@ -46,7 +46,7 @@ public class MazeManager : MonoBehaviour
         }
     }
 
-    // --- 新增：處理額外物體開關的邏輯 ---
+    // new
     void HandleExtraObjects()
     {
         // 遍歷列表，批量開啟
@@ -62,7 +62,7 @@ public class MazeManager : MonoBehaviour
         }
     }
 
-    // --- 以下是你原有的切換邏輯，完全保留 ---
+    //
     void SwitchToMaze1()
     {
         maze1.SetActive(true);
