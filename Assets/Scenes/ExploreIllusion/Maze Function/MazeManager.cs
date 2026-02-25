@@ -2,12 +2,20 @@ using UnityEngine;
 
 public class MazeManager : MonoBehaviour
 {
-    // 在 Inspector 面板中拉入對應的迷宮模型
+    // --- 原有的迷宮模型（保留，不破壞） ---
+    [Header("基礎迷宮設置")]
     public GameObject maze1; // 第一關迷宮
     public GameObject maze2; // 第二關迷宮
     public GameObject maze3; // 第三關迷宮
 
-    // 用來區分這個感應器是哪一組：1=1轉2, 2=2轉3, 3=3轉1
+    // --- 新增：可以在 Inspector 自由添加的列表 ---
+    [Header("額外要【開啟】的物體列表")]
+    public GameObject[] extraObjectsToEnable;
+
+    [Header("額外要【關閉】的物體列表")]
+    public GameObject[] extraObjectsToDisable;
+
+    // --- 原有的感應器類型判斷 ---
     [Header("設定感應器類型 (1, 2 或 3)")]
     public int triggerType = 1; 
 
@@ -19,26 +27,42 @@ public class MazeManager : MonoBehaviour
             // 根據不同類型的感應器執行特定的切換邏輯
             if (triggerType == 1 && maze1.activeSelf)
             {
-                // 如果是第1組感應器，且迷宮1正開啟，則換到迷宮2
                 SwitchToMaze2();
-                Debug.Log("成功從 Maze 1 切換到 Maze 2");
+                HandleExtraObjects(); // 執行額外的列表開關
+                Debug.Log("成功從 Maze 1 切換到 Maze 2，並處理了額外物體");
             }
             else if (triggerType == 2 && maze2.activeSelf)
             {
-                // 如果是第2組感應器，且迷宮2正開啟，則換到迷宮3
                 SwitchToMaze3();
-                Debug.Log("成功從 Maze 2 切換到 Maze 3");
+                HandleExtraObjects(); // 執行額外的列表開關
+                Debug.Log("成功從 Maze 2 切換到 Maze 3，並處理了額外物體");
             }
             else if (triggerType == 3 && maze3.activeSelf)
             {
-                // 如果是第3組感應器，且迷宮3正開啟，則換到迷宮1
                 SwitchToMaze1();
-                Debug.Log("成功從 Maze 3 切換到 Maze 1");
+                HandleExtraObjects(); // 執行額外的列表開關
+                Debug.Log("成功從 Maze 3 切換到 Maze 1，並處理了額外物體");
             }
         }
     }
 
-    // 切換到迷宮 1 的具體執行代碼
+    // --- 新增：處理額外物體開關的邏輯 ---
+    void HandleExtraObjects()
+    {
+        // 遍歷列表，批量開啟
+        foreach (GameObject obj in extraObjectsToEnable)
+        {
+            if (obj != null) obj.SetActive(true);
+        }
+
+        // 遍歷列表，批量關閉
+        foreach (GameObject obj in extraObjectsToDisable)
+        {
+            if (obj != null) obj.SetActive(false);
+        }
+    }
+
+    // --- 以下是你原有的切換邏輯，完全保留 ---
     void SwitchToMaze1()
     {
         maze1.SetActive(true);
@@ -46,7 +70,6 @@ public class MazeManager : MonoBehaviour
         maze3.SetActive(false);
     }
 
-    // 切換到迷宮 2 的具體執行代碼
     void SwitchToMaze2()
     {
         maze1.SetActive(false);
@@ -54,7 +77,6 @@ public class MazeManager : MonoBehaviour
         maze3.SetActive(false);
     }
 
-    // 切換到迷宮 3 的具體執行代碼
     void SwitchToMaze3()
     {
         maze1.SetActive(false);
