@@ -1898,7 +1898,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 611d31ebd15c4eb48a6a9fe69ee74143, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 6155706372c2a344c9b306904135da0b, type: 2}
+      objectReference: {fileID: 2100000, guid: a994d198b653c8e4ea514293795686ed, type: 2}
     - target: {fileID: 919132149155446097, guid: 611d31ebd15c4eb48a6a9fe69ee74143, type: 3}
       propertyPath: m_Name
       value: level02N_lowsoft_autoUV
@@ -2128,7 +2128,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: add10602857fc16469dc80f301f22c51, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 7a4f613b58cc73b49bee1402008ae264, type: 2}
+      objectReference: {fileID: 2100000, guid: c593bb2dbf21ece439e2324355d8e2dd, type: 2}
     - target: {fileID: 919132149155446097, guid: add10602857fc16469dc80f301f22c51, type: 3}
       propertyPath: m_Name
       value: level03N_lowsoft_autoUV
@@ -2706,7 +2706,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 25b75aae30b5e684b8f3e0c79ec259dc, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 16165d36ff4d1624f9559c1f6c282288, type: 2}
+      objectReference: {fileID: 2100000, guid: 960e5ceaaecd44644bd71a36ca5a2036, type: 2}
     - target: {fileID: 919132149155446097, guid: 25b75aae30b5e684b8f3e0c79ec259dc, type: 3}
       propertyPath: m_Name
       value: level01N_lowsoft_autoUV

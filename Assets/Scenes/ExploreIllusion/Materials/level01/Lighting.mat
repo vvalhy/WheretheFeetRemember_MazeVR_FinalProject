@@ -15,10 +15,10 @@ Material:
   - _DETAIL_MULX2
   - _EMISSION
   m_InvalidKeywords: []
-  m_LightmapFlags: 1
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2000
   stringTagMap:
     RenderType: Opaque
   disabledShaderPasses:
@@ -40,7 +40,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailMask:
-        m_Texture: {fileID: 2800000, guid: da07b2cf3ec623943a526f0867b3ca14, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailNormalMap:
@@ -117,9 +117,9 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.84276724, g: 0.39408308, b: 0.31007463, a: 1}
-    - _Color: {r: 0.84276724, g: 0.39408305, b: 0.3100746, a: 1}
-    - _EmissionColor: {r: 0.9811321, g: 0.49105927, b: 0.38566503, a: 1}
+    - _BaseColor: {r: 0.24528289, g: 0.083437294, b: 0.053882886, a: 1}
+    - _Color: {r: 0.24528286, g: 0.08343729, b: 0.053882875, a: 1}
+    - _EmissionColor: {r: 0.33153635, g: 0.09427785, b: 0.09427785, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
