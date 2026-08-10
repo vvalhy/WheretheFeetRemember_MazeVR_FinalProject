@@ -1,86 +1,87 @@
 using UnityEngine;
 
-public class MazeManager : MonoBehaviour
+public class UniversalTrigger : MonoBehaviour
 {
+    [Header("--- 迷宮切換功能 ---")]
+    [Tooltip("勾選：觸發時會切換迷宮；取消勾選：不切換迷宮，只做物體開關")]
+    public bool enableMazeSwitch = true;
 
-    [Header("基礎迷宮設置")]
-    public GameObject maze1; // 第一關迷宮
-    public GameObject maze2; // 第二關迷宮
-    public GameObject maze3; // 第三關迷宮
+    [Tooltip("所有迷宮物體的列表")]
+    public GameObject[] mazes;
 
-    // --- 新增：在 Inspector 自由添加的列表 ---
-    [Header("額外要【開啟】的物體列表")]
+    [Tooltip("要切換到的目標迷宮索引 (0~N)")]
+    public int targetMazeIndex = 0;
+
+
+    [Header("--- 物體開關功能 ---")]
+    [Tooltip("額外要【開啟】的物體列表")]
     public GameObject[] extraObjectsToEnable;
 
-    [Header("額外要【關閉】的物體列表")]
+    [Tooltip("額外要【關閉】的物體列表")]
     public GameObject[] extraObjectsToDisable;
 
-    
-    [Header("設定感應器類型 (1, 2 或 3)")]
-    public int triggerType = 1; 
+
+    [Header("--- 觸發器自身設置 ---")]
+    [Tooltip("觸發後是否自動關閉【自身】碰撞盒")]
+    public bool disableSelfOnTrigger = true;
 
     private void OnTriggerEnter(Collider other)
     {
         // 檢查撞擊者是否帶有 MainCamera 標籤
         if (other.CompareTag("MainCamera"))
         {
-            // 根據不同類型的感應器執行特定的切換邏輯
-            if (triggerType == 1 && maze1.activeSelf)
+            // 1. 如果勾選了切換迷宮，才執行迷宮切換邏輯
+            if (enableMazeSwitch)
             {
-                SwitchToMaze2();
-                HandleExtraObjects(); // 執行額外的列表開關
-                Debug.Log("成功從 Maze 1 切換到 Maze 2，並處理了額外物體");
+                SwitchMaze();
             }
-            else if (triggerType == 2 && maze2.activeSelf)
+
+            // 2. 執行物體開關逻辑（不管切不切迷宮，都会執行）
+            HandleExtraObjects();
+
+            // 3. 如果勾選了關閉自身，才關閉自己
+            if (disableSelfOnTrigger)
             {
-                SwitchToMaze3();
-                HandleExtraObjects(); // 執行額外的列表開關
-                Debug.Log("成功從 Maze 2 切換到 Maze 3，並處理了額外物體");
-            }
-            else if (triggerType == 3 && maze3.activeSelf)
-            {
-                SwitchToMaze1();
-                HandleExtraObjects(); // 執行額外的列表開關
-                Debug.Log("成功從 Maze 3 切換到 Maze 1，並處理了額外物體");
+                gameObject.SetActive(false);
             }
         }
     }
 
-    // new
+    /// <summary>
+    /// 迷宮切換邏輯
+    /// </summary>
+    void SwitchMaze()
+    {
+        if (mazes == null || mazes.Length == 0) return;
+
+        if (targetMazeIndex < 0 || targetMazeIndex >= mazes.Length)
+        {
+            Debug.LogError($"[{gameObject.name}] Target Index {targetMazeIndex} 超出了 mazes 數組範圍！");
+            return;
+        }
+
+        for (int i = 0; i < mazes.Length; i++)
+        {
+            if (mazes[i] != null)
+            {
+                mazes[i].SetActive(i == targetMazeIndex);
+            }
+        }
+    }
+
+    /// <summary>
+    /// 物體批量開關邏輯
+    /// </summary>
     void HandleExtraObjects()
     {
-        // 遍歷列表，批量開啟
         foreach (GameObject obj in extraObjectsToEnable)
         {
             if (obj != null) obj.SetActive(true);
         }
 
-        // 遍歷列表，批量關閉
         foreach (GameObject obj in extraObjectsToDisable)
         {
             if (obj != null) obj.SetActive(false);
         }
-    }
-
-    //
-    void SwitchToMaze1()
-    {
-        maze1.SetActive(true);
-        maze2.SetActive(false);
-        maze3.SetActive(false);
-    }
-
-    void SwitchToMaze2()
-    {
-        maze1.SetActive(false);
-        maze2.SetActive(true);
-        maze3.SetActive(false);
-    }
-
-    void SwitchToMaze3()
-    {
-        maze1.SetActive(false);
-        maze2.SetActive(false);
-        maze3.SetActive(true);
     }
 }
