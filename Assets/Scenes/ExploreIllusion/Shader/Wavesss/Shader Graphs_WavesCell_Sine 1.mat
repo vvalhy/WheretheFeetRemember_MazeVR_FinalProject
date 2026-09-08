@@ -55,11 +55,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Frequency: 8
+    - _Frequency: 9
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Wave_Speed: 0.8
-    - _Wave_Strength: 0.01
+    - _Wave_Speed: 0.5
+    - _Wave_Strength: 0.005
     m_Colors:
     - _Base_Color: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
