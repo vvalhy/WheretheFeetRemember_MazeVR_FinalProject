@@ -1,6 +1,6 @@
 # Where the Feet Remember
 
-<img width="1080/4" height="1920/4" alt="huayanglei02" src="https://github.com/user-attachments/assets/8fac8a8f-b6b4-4122-b228-965ebd58ea3f" />
+<img alt="huayanglei02" src="https://github.com/user-attachments/assets/8fac8a8f-b6b4-4122-b228-965ebd58ea3f" />
 
 
 ## Short Description
